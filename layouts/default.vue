@@ -1,6 +1,13 @@
 <template>
   <div>
-    <Nuxt />
+    <Header/>
+    <section class="w-full mx-auto px-4 m-4 mt-0 border-2 border-red-600">
+      <div class="grid md:grid-cols-12 gap-5 p-4">
+        <aside class="md:col-span-2 md:pt-0 p-2 border-2 border-blue-600"><SideNav/></aside>
+        <main class="md:col-span-10 p-4 border-2 border-green-600"><Nuxt/></main>
+      </div>
+    </section>
+    <Footer/>
   </div>
 </template>
 
