@@ -1,34 +1,39 @@
 <template>
   <div>
-    <h1>Articles</h1>
+    <h1>Featured Articles</h1>
     <div>
       <ArticleCard
         v-for="article in articles"
-        :key="article.title"
+        :key="article.slug"
+        :slug="article.slug"
         :title="article.title"
-        :description="article.description"
-        :author="article.author"
+        :teaser="article.metadata.teaser"
+        :author="article.metadata.author"
+        :content="article.content"
       />
     </div>
   </div>
 </template>
 
 <script>
+const Cosmic = require('cosmicjs')
+const api = Cosmic()
+const bucket = api.bucket({
+  slug: '41947280-bf62-11eb-be48-39507926bc2a',
+  read_key: 'ngXWCk42H3ub0anSeqBZx1TaFH1Qb0PVWnObyjqkNtsuG4jbsQ'
+})
 export default {
-  asyncData() {
-    const articles = [
-      {
-        title: 'How to make your articles Vuetiful',
-        description:
-          'This article guides you through all the steps to make an article shine with your favourite framework, Vue',
-        author: {
-          name: 'Naruto Uzumaki',
-          image: 'https://wallpaperaccess.com/full/2866246.jpg',
-        },
+  async asyncData() {
+    const data = await bucket.getObjects({
+     query: {
+        type: 'articles'
       },
-    ]
-
-    return { articles }
+      /*props: 'slug,title,content,metadata' // Limit the API response data by props*/
+    })
+    const articles = await data.objects
+    return {
+      articles
+    }
   },
 }
 </script>
