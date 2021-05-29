@@ -1,17 +1,24 @@
 <template>
-  <div>
-    <h1>Featured Articles</h1>
-    <div>
-      <ArticleCard
-        v-for="article in articles"
-        :key="article.slug"
-        :slug="article.slug"
-        :title="article.title"
-        :teaser="article.metadata.teaser"
-        :author="article.metadata.author"
-        :content="article.content"
-      />
-    </div>
+  <div class="mt-4">
+    <section>
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold">Featured Articles</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+          <ArticleCard
+            v-for="article in articles"
+            :key="article.slug"
+            :slug="article.slug"
+            :title="article.title"
+            :content="article.content"
+            :date="article.metadata.date"
+            :teaser="article.metadata.teaser"
+            :hero="article.metadata.hero"
+            :author="article.metadata.author"
+            :tags="article.metadata.tags"
+          />
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -28,7 +35,7 @@ export default {
      query: {
         type: 'articles'
       },
-      /*props: 'slug,title,content,metadata' // Limit the API response data by props*/
+      props: 'slug,title,content,metadata.date,metadata.teaser,metadata.hero,metadata.author,metadata.tags'
     })
     const articles = await data.objects
     return {
