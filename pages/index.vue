@@ -2,7 +2,6 @@
   <div class="mt-4">
     <section>
       <div class="container mx-auto px-4">
-        <h1 class="text-4xl font-bold">Featured Articles</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
           <ArticleCard
             v-for="article in articles"

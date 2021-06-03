@@ -1,16 +1,15 @@
 <template>
   <nuxt-link
     class="block text-gray-800 rounded-lg shadow-lg p-6"
-    :to="`/${slug}`"
+    :to="slug"
     >
     <header class="text-2xl font-bold mb-4">Article Title: {{ title }}</header>
     <img :src="hero.imgix_url" alt="" />
     <p class="mt-4">Teaser: {{ teaser }}</p>
-    
-    <p></p>
-    <div class="ml-3">
+    <!--<div class="ml-3">
       <p class="text-sm mt-1"><span v-html="content"></span></p>
     </div>
+    -->
   </nuxt-link>
 </template>
 
